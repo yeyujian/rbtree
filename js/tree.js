@@ -80,6 +80,11 @@ var RBTree=function()
 	    for(let i=0;i<lines.length;i++)
 	    	document.body.removeChild(lines[i]);
 	    this.lines.splice(0,this.lines.length);//清空数组
+	    let flag={x:0};
+	    new TWEEN.Tween(flag)
+  	    .to( {1000: flag.x },1001)
+            .easing( TWEEN.Easing.Exponential.InOut ).onUpdate( render )
+            .start();
 	    this.changePos(this.root,0);
 
 	    render();
@@ -120,7 +125,7 @@ try
 // this.objects[node.num].position.z=node.z;
 new TWEEN.Tween( this.objects[node.num].position )
 .to( { x: node.x, y: node.y, z: node.z },1000)
-.easing( TWEEN.Easing.Exponential.InOut ).onUpdate( render )
+.easing( TWEEN.Easing.Exponential.InOut )
 .start();
 var cur=this.depth-dep>0?this.depth-dep:1;
 // console.log(node.x);
@@ -140,11 +145,11 @@ object.position.z = node.z;
 scene.add( object );
 new TWEEN.Tween( object.position )
 .to( { x: (node.fa.x+node.x)/2,y:(node.fa.y+node.y)/2 },1000)
-.easing( TWEEN.Easing.Exponential.InOut ).onUpdate( render )
+.easing( TWEEN.Easing.Exponential.InOut )
 .start();
 new TWEEN.Tween( object.rotation )
 .to( { z:-radi(node) },1000)
-.easing( TWEEN.Easing.Exponential.InOut ).onUpdate( render )
+.easing( TWEEN.Easing.Exponential.InOut )
 .start();
 // console.log(distance+'\n'+object.position.x+'\n'+object.position.y+'\n'
 // 	+object.position.z);
